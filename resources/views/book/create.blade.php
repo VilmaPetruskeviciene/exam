@@ -32,10 +32,10 @@
                                 <option value="{{$category->id}}" @if($category->id == old('category_id')) selected @endif>{{$category->title}}</option>
                             @endforeach
                         </select>
-                        {{--<div class="input-group mt-3">
+                        <div data-clone class="input-group mt-3">
                             <span class="input-group-text">Photo</span>
-                            <input type="file" name="photo" class="form-control">
-                        </div>--}}
+                            <input type="file" name="photo[]" multiple class="form-control">
+                        </div>
                         @csrf
                         <button type="submit" class="btn btn-secondary mt-4">Create</button>
                     </form>

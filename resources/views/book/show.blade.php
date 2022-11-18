@@ -15,7 +15,6 @@
                         <div class="line"><small>ISBN: </small><h5>{{$book->ISBN}}</h5></div>
                         <div class="line"><small>Pages: </small><h5>{{$book->pages}}</h5></div>
                         <div class="line"><small>Category: </small><h5>{{$book->getCategory->title}}</h5></div>
-                        {{--
                         @forelse($book->getPhotos as $photo)
                             <div class="img">
                                 <img class="show-img" src="{{$photo->url}}">
@@ -23,7 +22,6 @@
                         @empty
                             <h2>No photos yet.</h2>
                         @endforelse
-                        --}}
                     </div>
                 </div>
             </div>

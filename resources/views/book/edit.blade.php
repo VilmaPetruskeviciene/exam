@@ -26,7 +26,6 @@
                             <span class="input-group-text">Book Pages</span>
                             <input type="text" name="pages" class="form-control" value="{{old('pages', $book->pages)}}">
                         </div>
-                        {{--
                         <div data-clone class="input-group mt-3">
                             <span class="input-group-text">Photo</span>
                             <input type="file" name="photo[]" multiple class="form-control">
@@ -41,8 +40,7 @@
                             @empty
                             <h2>No photos yet.</h2>
                             @endforelse
-                        </div>
-                        --}}
+                        </div>                  
                         <select name="category_id" class="form-select mt-3">
                             <option value="0">Choose category</option>
                             @foreach($categories as $category)

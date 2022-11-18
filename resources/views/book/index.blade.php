@@ -24,11 +24,9 @@
                                             {{$book->getCategory->title}}
                                         </a>
                                     </h5>
-                                    {{--
                                     @if($book->getPhotos()->count())
                                     <img class="index-img" src="{{$book->getPhotos()->first()->url}}">
                                     @endif
-                                    --}}
                                 </div>
                                 <div class="buttons">
                                     <a href="{{route('b_show', $book)}}" class="btn btn-info">Show</a>
