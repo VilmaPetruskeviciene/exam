@@ -26,15 +26,6 @@
                         <li class="list-group-item">No books found</li>
                         @endforelse
                     </ul>
-                    @if(Auth::user()->role >= 10)
-                    <div class="buttons mt-2">
-                        <form action="{{route('c_delete_books', $category)}}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger">Delete all books</button>
-                        </form>
-                    </div>
-                    @endif
                 </div>
             </div>
         </div>

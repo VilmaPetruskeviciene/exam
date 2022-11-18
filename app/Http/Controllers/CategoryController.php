@@ -110,11 +110,4 @@ class CategoryController extends Controller
         return redirect()->route('c_index')->with('ok', "$title gone!");
     }
 
-    public function destroyAll(Category $category)
-    {
-        $ids = $category->books()->pluck('id')->all();
-        Book::destroy($ids);
-        return redirect()->route('c_index')->with('ok', "All books deleted!");
-    }
-
 }
