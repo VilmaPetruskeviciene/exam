@@ -6,7 +6,7 @@
         <div class="col-9">
             <div class="card">
                 <div class="card-header">
-                    <h2>Book</h2>
+                    <h2>Books</h2>
                 </div>
                 <div class="card-body">
                     <ul class="list-group">

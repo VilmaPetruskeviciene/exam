@@ -15,7 +15,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        return view('book.index', [
+            'books' => Book::orderBy('title')->get()
+        ]);
     }
 
     /**
@@ -45,7 +47,7 @@ class BookController extends Controller
             'pages' => $request->pages,
             'category_id' => $request->category_id,
         ]);
-        return redirect()->back();
+        return redirect()->route('b_index');
     }
 
     /**
@@ -56,7 +58,9 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return view('book.show', [
+            'book' => $book
+        ]);
     }
 
     /**
@@ -67,7 +71,10 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('book.edit', [
+            'book' => $book,
+            'categories' => Category::orderBy('title')->get()
+        ]);
     }
 
     /**
@@ -79,7 +86,14 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $book->update([
+            'title' => $request->title,
+            'summary' => $request->summary,
+            'ISBN' => $request->ISBN,
+            'pages' => $request->pages,
+            'category_id' => $request->category_id,
+        ]);
+        return redirect()->route('b_index');
     }
 
     /**
@@ -90,6 +104,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->route('b_index');
     }
 }

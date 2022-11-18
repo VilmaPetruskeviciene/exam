@@ -27,6 +27,7 @@ Route::prefix('category')->name('c_')->group(function () {
     Route::delete('/delete/{category}', [C::class, 'destroy'])->name('delete');
     Route::get('/edit/{category}', [C::class, 'edit'])->name('edit');
     Route::put('/edit/{category}', [C::class, 'update'])->name('update');
+    Route::delete('/delete-books/{category}', [C::class, 'destroyAll'])->name('delete_books');
 });
 
 Route::prefix('book')->name('b_')->group(function () {

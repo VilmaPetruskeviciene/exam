@@ -14,7 +14,9 @@
                         <li class="list-group-item">
                             <div class="categories-list">
                                 <div class="content">
-                                    <h2>{{$category->title}}</h2>
+                                    <h2>{{$category->title}}
+                                    <small>[{{$category->books()->count()}}]</small>
+                                    </h2>
                                 </div>
                                 <div class="buttons">
                                     <a href="{{route('c_show', $category)}}" class="btn btn-info">Show</a>
