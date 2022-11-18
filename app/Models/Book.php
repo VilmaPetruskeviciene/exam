@@ -11,6 +11,11 @@ class Book extends Model
     use HasFactory;
     protected $fillable = ['title', 'summary', 'ISBN', 'pages', 'category_id'];
 
+    const SORT_SELECT = [
+        ['title_asc', 'Title A - Z'],
+        ['title_desc', 'Title Z - A'],
+    ];
+
     public function getCategory()
     {
        return $this->belongsTo(Category::class, 'category_id', 'id');

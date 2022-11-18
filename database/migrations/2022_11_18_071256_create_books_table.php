@@ -19,9 +19,6 @@ return new class extends Migration
             $table->string('summary', 500)->nullable();
             $table->string('ISBN', 100);
             $table->string('pages', 100)->nullable();
-            $table->string('rating', 4, 2)->nullable();
-            $table->unsignedBigInteger('rating_sum')->default(0);
-            $table->unsignedBigInteger('rating_count')->default(0);
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();

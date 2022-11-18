@@ -15,7 +15,7 @@
                             <div class="categories-list">
                                 <div class="content">
                                     <h2>{{$category->title}}
-                                    <small>[{{$category->books()->count()}}]</small>
+                                        <small>[{{$category->books()->count()}}]</small>
                                     </h2>
                                 </div>
                                 <div class="buttons">
@@ -37,7 +37,7 @@
                     </ul>
                 </div>
                 <div class="me-3 mx-3">
-                    {{-- {{ $categories->links() }} --}}
+                    {{ $categories->links() }}
                 </div>
             </div>
         </div>
