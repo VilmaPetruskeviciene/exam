@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Http\Requests\StoreBookRequest;
-use App\Http\Requests\UpdateBookRequest;
+use App\Models\Category;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
@@ -25,18 +25,27 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('book.create', [
+            'categories' => Category::orderBy('title')->get()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBookRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBookRequest $request)
+    public function store(Request $request)
     {
-        //
+        Book::create([
+            'title' => $request->title,
+            'summary' => $request->summary,
+            'ISBN' => $request->ISBN,
+            'pages' => $request->pages,
+            'category_id' => $request->category_id,
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -64,11 +73,11 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBookRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBookRequest $request, Book $book)
+    public function update(Request $request, Book $book)
     {
         //
     }
