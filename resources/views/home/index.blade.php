@@ -3,7 +3,7 @@
 @section('content')
 <div class="container --content">
     <div class="row justify-content-center">
-        <div class="col-9">
+        <div class="col-12 p-0 mb-2">
             <div class="card">
                 <div class="card-header">
                     <h2>Books</h2>
@@ -81,17 +81,6 @@
                         </h5>
                         @if($book->getPhotos()->count())
                         <img class="index-img" src="{{$book->getPhotos()->first()->url}}">
-                        @endif
-                    </div>
-                    <div class="buttons">
-                        <a href="{{route('b_show', $book)}}" class="btn btn-info">Show</a>
-                        @if(Auth::user()->role >= 10)
-                        <a href="{{route('b_edit', $book)}}" class="btn btn-success">Edit</a>
-                        <form action="{{route('b_delete', $book)}}" method="post">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
                         @endif
                     </div>
                 </div>

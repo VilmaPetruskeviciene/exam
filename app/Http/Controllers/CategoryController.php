@@ -38,10 +38,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:50',
+        ]);
+
         Category::create([
             'title' => $request->title,
         ]);
-        return redirect()->route('c_index');
+        return redirect()->route('c_index')->with('ok', 'All good');
     }
 
     /**
@@ -79,10 +83,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:50',
+        ]);
+
         $category->update([
             'title' => $request->title
         ]);
-        return redirect()->route('c_index');
+        return redirect()->route('c_index')->with('ok', 'All good');
     }
 
     /**
@@ -94,17 +102,19 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if ($category->books()->count()) {
-            return 'Negalima.';
+            $title = $category->title;
+            return redirect()->route('c_index')->with('not', "$title has books!");
         }
+        $title = $category->title;
         $category->delete();
-        return redirect()->route('c_index');
+        return redirect()->route('c_index')->with('ok', "$title gone!");
     }
 
     public function destroyAll(Category $category)
     {
         $ids = $category->books()->pluck('id')->all();
         Book::destroy($ids);
-        return redirect()->route('c_index');
+        return redirect()->route('c_index')->with('ok', "All books deleted!");
     }
 
 }

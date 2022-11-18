@@ -40,6 +40,12 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:50',
+            'ISBN' => 'required|numeric|min:3|max:10000',
+            'photo.*' => 'sometimes|required|mimes:jpg|max:2000'
+        ]);
+
         Book::create([
             'title' => $request->title,
             'summary' => $request->summary,
@@ -47,7 +53,7 @@ class BookController extends Controller
             'pages' => $request->pages,
             'category_id' => $request->category_id,
         ])->addImages($request->file('photo'));
-        return redirect()->route('b_index');
+        return redirect()->route('b_index')->with('ok', 'All good');
     }
 
     /**
@@ -86,6 +92,12 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:50',
+            'ISBN' => 'required|numeric|min:3|max:10000',
+            'photo.*' => 'sometimes|required|mimes:jpg|max:2000'
+        ]);
+
         $book->update([
             'title' => $request->title,
             'summary' => $request->summary,
@@ -96,7 +108,7 @@ class BookController extends Controller
         $book
         ->removeImages($request->delete_photo)
         ->addImages($request->file('photo'));
-        return redirect()->route('b_index');
+        return redirect()->route('b_index')->with('ok', 'All good');
     }
 
     /**
@@ -111,8 +123,8 @@ class BookController extends Controller
             $delIds = $book->getPhotos()->pluck('id')->all();
             $book->removeImages($delIds);
         }
-
+        $title = $book->title;
         $book->delete();
-        return redirect()->route('b_index');
+        return redirect()->route('b_index')->with('ok', "$title gone!");
     }
 }
