@@ -73,6 +73,19 @@
                         <img class="index-img" src="{{$book->getPhotos()->first()->url}}">
                         @endif
                         <h2><span>Title: </span>{{$book->title}}</h2>
+                        <h4 class="mx-3"><span>Rating: </span>{{$book->rating ?? 'no rating'}}</h4>
+                        <div class="buttons">
+                            <form action="{{route('rate', $book)}}" method="post">
+                                <select name="rate">
+                                    @foreach(range(1, 10) as $value)
+                                    <option value="{{$value}}">{{$value}}</option>
+                                    @endforeach
+                                </select>
+                                @csrf
+                                @method('put')
+                                <button type="submit" class="btn btn-info">Rate</button>
+                            </form>
+                        </div>
                     </div>
                     <div class="content mb-3">
                         <h4><span>ISBN: </span>{{$book->ISBN}}</h4>

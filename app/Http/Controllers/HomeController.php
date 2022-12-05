@@ -32,7 +32,13 @@ class HomeController extends Controller
         }
 
         // Sort
-        if ($request->sort == 'title_asc') {
+        if ($request->sort == 'rate_asc') {
+            $books->orderBy('rating');
+        }
+        else if ($request->sort == 'rate_desc') {
+            $books->orderBy('rating', 'desc');
+        }
+        else if ($request->sort == 'title_asc') {
             $books->orderBy('title');
         }
         else if ($request->sort == 'title_desc') {
@@ -48,4 +54,14 @@ class HomeController extends Controller
             's' => $request->s ?? '',
         ]);
     }
+
+    public function rate(Request $request, Book $book)
+    {
+        $book->rating_sum = $book->rating_sum + $request->rate;
+        $book->rating_count ++;
+        $book->rating = round(($book->rating_sum / $book->rating_count), 2);
+        $book->save();
+        return redirect()->back();
+    }
+
 }
